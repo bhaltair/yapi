@@ -73,6 +73,7 @@ exports.deepCopyJson = deepCopyJson;
 
 exports.isJson5 = isJson5;
 
+// 检查是否有权限
 exports.checkAuth = (action, role) => {
   return Roles[roleAction[action]] <= Roles[role];
 };

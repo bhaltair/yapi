@@ -324,6 +324,7 @@ class userController extends baseController {
       return (ctx.body = yapi.commons.resReturn(null, 401, '该email已经注册'));
     }
 
+    // 加盐
     let passsalt = yapi.commons.randStr();
     let data = {
       username: params.username,

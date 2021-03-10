@@ -2,21 +2,32 @@ process.env.NODE_PATH = __dirname;
 require('module').Module._initPaths();
 
 const yapi = require('./yapi.js');
+
+// 暴露通用模块
 const commons = require('./utils/commons');
 yapi.commons = commons;
+
 const dbModule = require('./utils/db.js');
+// 连接数据库
 yapi.connect = dbModule.connect();
+
 const mockServer = require('./middleware/mockServer.js');
+
 require('./plugin.js');
+
 const websockify = require('koa-websocket');
 const websocket = require('./websocket.js');
+
 const storageCreator = require('./utils/storage')
+
 require('./utils/notice')
 
 const Koa = require('koa');
 const koaStatic = require('koa-static');
 // const bodyParser = require('koa-bodyparser');
 const koaBody = require('koa-body');
+
+// 路由
 const router = require('./router.js');
 
 global.storageCreator = storageCreator;
@@ -54,7 +65,7 @@ app.use(async (ctx, next) => {
   await next();
 });
 
-
+// 前端静态目录
 app.use(koaStatic(yapi.path.join(yapi.WEBROOT, 'static'), { index: indexFile, gzip: true }));
 
 

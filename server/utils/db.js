@@ -39,6 +39,8 @@ function connect(callback) {
     }
   }
 
+
+  // 连接数据库
   let db = mongoose.connect(
     connectString,
     options,

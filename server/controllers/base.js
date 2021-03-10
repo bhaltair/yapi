@@ -34,6 +34,7 @@ class baseController {
     if (ignoreRouter.indexOf(ctx.path) > -1) {
       this.$auth = true;
     } else {
+      // 检查登录
       await this.checkLogin(ctx);
     }
 
@@ -125,16 +126,19 @@ class baseController {
 
   async checkLogin(ctx) {
     let token = ctx.cookies.get('_yapi_token');
+    // user_id
     let uid = ctx.cookies.get('_yapi_uid');
     try {
       if (!token || !uid) {
         return false;
       }
       let userInst = yapi.getInst(userModel); //创建user实体
+      // 查询用户
       let result = await userInst.findById(uid);
       if (!result) {
         return false;
       }
+
 
       let decoded;
       try {
@@ -202,6 +206,7 @@ class baseController {
     ctx.body = body;
   }
 
+  // 查询权限
   getRole() {
     return this.$user.role;
   }

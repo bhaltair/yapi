@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs-extra');
 const nodemailer = require('nodemailer');
+
+// 导入配置
 const config = require('../../config.json');
 
 let insts = new Map();
@@ -10,11 +12,14 @@ const WEBROOT = path.resolve(__dirname, '..'); //路径
 const WEBROOT_SERVER = __dirname;
 const WEBROOT_RUNTIME = path.resolve(__dirname, '../..');
 const WEBROOT_LOG = path.join(WEBROOT_RUNTIME, 'log');
+
+// 导出配置
 const WEBCONFIG = config;
 
 fs.ensureDirSync(WEBROOT_LOG);
 
 if (WEBCONFIG.mail && WEBCONFIG.mail.enable) {
+  // smtp
   mail = nodemailer.createTransport(WEBCONFIG.mail);
 }
 
@@ -52,5 +57,7 @@ let r = {
   delInst: delInst,
   getInsts: insts
 };
+
+// 导出邮件服务
 if (mail) r.mail = mail;
 module.exports = r;

@@ -9,6 +9,7 @@ var assetsPluginInstance = new AssetsPlugin({
   }
 });
 var fs = require('fs');
+
 var package = require('./package.json');
 var yapi = require('./server/yapi');
 var isWin = require('os').platform() === 'win32'

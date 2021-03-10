@@ -8,7 +8,7 @@ const interfaceColModel = require('../models/interfaceCol.js');
 const interfaceCaseModel = require('../models/interfaceCase.js');
 const interfaceModel = require('../models/interface.js');
 const userModel = require('../models/user.js');
-const followModel = require('../models/follow.js');
+// const followModel = require('../models/follow.js');
 const json5 = require('json5');
 const _ = require('underscore');
 const Ajv = require('ajv');
@@ -126,6 +126,7 @@ exports.time = () => {
   return Date.parse(new Date()) / 1000;
 };
 
+// 筛选结果
 exports.fieldSelect = (data, field) => {
   if (!data || !field || !Array.isArray(field)) {
     return null;
@@ -140,6 +141,7 @@ exports.fieldSelect = (data, field) => {
   return arr;
 };
 
+// 随机数
 exports.rand = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
@@ -167,6 +169,7 @@ exports.getIp = ctx => {
   return ip;
 };
 
+// 生成密码
 exports.generatePassword = (password, passsalt) => {
   return sha1(password + sha1(passsalt));
 };
@@ -177,6 +180,7 @@ exports.expireDate = day => {
   return date;
 };
 
+// 发送邮件
 exports.sendMail = (options, cb) => {
   if (!yapi.mail) return false;
   options.subject = options.subject ? options.subject + '-YApi 平台' : 'YApi 平台';

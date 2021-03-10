@@ -134,6 +134,7 @@ class groupController extends baseController {
 
     let owners = [];
 
+    // 没有设置成员，添加自己
     if(params.owner_uids.length === 0){
       params.owner_uids.push(
         this.getUid()
@@ -143,6 +144,8 @@ class groupController extends baseController {
     if (params.owner_uids) {
       for (let i = 0, len = params.owner_uids.length; i < len; i++) {
         let id = params.owner_uids[i];
+
+        // 用户信息
         let groupUserdata = await this.getUserdata(id, 'owner');
         if (groupUserdata) {
           owners.push(groupUserdata);
@@ -152,22 +155,27 @@ class groupController extends baseController {
 
     let groupInst = yapi.getInst(groupModel);
 
+    // 是否重复
     let checkRepeat = await groupInst.checkRepeat(params.group_name);
 
     if (checkRepeat > 0) {
       return (ctx.body = yapi.commons.resReturn(null, 401, '项目分组名已存在'));
     }
 
+    // 保存的数据
     let data = {
       group_name: params.group_name,
       group_desc: params.group_desc,
+      // 小组 uid
       uid: this.getUid(),
       add_time: yapi.commons.time(),
       up_time: yapi.commons.time(),
       members: owners
     };
 
+    // 保存
     let result = await groupInst.save(data);
+
     result = yapi.commons.fieldSelect(result, [
       '_id',
       'group_name',
@@ -176,6 +184,8 @@ class groupController extends baseController {
       'members',
       'type'
     ]);
+
+    // 打印日志
     let username = this.getUsername();
     yapi.commons.saveLog({
       content: `<a href="/user/profile/${this.getUid()}">${username}</a> 新增了分组 <a href="/group/${
@@ -186,6 +196,8 @@ class groupController extends baseController {
       username: username,
       typeid: result._id
     });
+
+    // 返回结果
     ctx.body = yapi.commons.resReturn(result);
   }
 

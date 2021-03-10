@@ -6,6 +6,8 @@ const userModel = require('./models/user.js');
 const mongoose = require('mongoose');
 
 yapi.commons = commons;
+
+// 连接数据库
 yapi.connect = dbModule.connect();
 
 function install() {
@@ -17,15 +19,20 @@ function install() {
     );
   }
 
+  // 初始化sql
   setupSql();
 }
 
 function setupSql() {
   let userInst = yapi.getInst(userModel);
+
+  // 盐
   let passsalt = yapi.commons.randStr();
+  // 设置admin管理员帐户
   let result = userInst.save({
     username: yapi.WEBCONFIG.adminAccount.substr(0, yapi.WEBCONFIG.adminAccount.indexOf('@')),
     email: yapi.WEBCONFIG.adminAccount,
+    // 保存密码
     password: yapi.commons.generatePassword('ymfe.org', passsalt),
     passsalt: passsalt,
     role: 'admin',
