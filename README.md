@@ -18,6 +18,10 @@ YApi 是<strong>高效</strong>、<strong>易用</strong>、<strong>功能强大
 
 941802405 **群2欢迎加入**
 
+### 二次开发
+
+https://yapi.baidu.com/doc/documents/redev.html
+
 ### 特性
 *  基于 Json5 和 Mockjs 定义接口返回数据的结构和文档，效率提升多倍
 *  扁平化权限设计，即保证了大型企业级项目的管理，又保证了易用性
@@ -89,33 +93,6 @@ YApi 是<strong>高效</strong>、<strong>易用</strong>、<strong>功能强大
 * [idea 一键上传接口到yapi插件](https://github.com/diwand/YapiIdeaUploadPlugin)
 * [idea 接口上传调试插件 easy-yapi](https://easyyapi.com/)
 * [执行 postgres sql 的服务](https://github.com/shouldnotappearcalm/http-postgres-server)
-
-### YApi 的一些客户
-* 去哪儿
-* 携程
-* 艺龙 
-* 美团
-* 百度
-* 腾讯
-* 阿里巴巴
-* 京东
-* 今日头条
-* 唯品支付 
-* 链家网
-* 快手
-* 便利蜂
-* 中商惠民
-* 新浪
-* VIPKID
-* 马蜂窝
-
-### Authors
-* [hellosean1025](https://github.com/hellosean1025)
-* [gaoxiaomumu](https://github.com/gaoxiaomumu)
-* [zwjamnsss](https://github.com/amnsss)
-* [dwb1994](https://github.com/dwb1994)
-* [fungezi](https://github.com/fungezi)
-
 
 ### License
 Apache License 2.0
